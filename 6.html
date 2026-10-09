@@ -1,0 +1,492 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Page 7 — Midnight Gold Reception</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&amp;family=Italiana&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --gold: #d8b76c;
+      --soft-gold: #f1db9c;
+      --ivory: #fff7e6;
+      --midnight: #030817;
+      --indigo: #111d4b;
+      --charcoal: #0b0c12;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; }
+    body {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #07070c;
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .page {
+      position: relative;
+      width: min(100vw, 56.25vh);
+      height: min(100vh, 177.7778vw);
+      overflow: hidden;
+      container-type: size;
+      isolation: isolate;
+      color: var(--ivory);
+      background:
+        radial-gradient(ellipse at 72% 37%, rgba(73, 87, 178, .78) 0 10%, rgba(35, 49, 118, .52) 27%, transparent 55%),
+        radial-gradient(ellipse at 23% 76%, rgba(193, 132, 52, .22), transparent 42%),
+        linear-gradient(150deg, #01030b 0%, #061031 31%, #19245f 56%, #11131d 76%, #03040a 100%);
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .page::before {
+      z-index: 7;
+      inset: 2.4%;
+      border: 1px solid rgba(216, 183, 108, .38);
+      box-shadow:
+        inset 0 0 0 1px rgba(241, 219, 156, .07),
+        0 0 0 1px rgba(0,0,0,.22);
+    }
+
+    .page::after {
+      z-index: 1;
+      inset: 0;
+      opacity: .2;
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255,255,255,.23) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 84% 20%, rgba(216,183,108,.32) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 70% 78%, rgba(241,219,156,.2) 0 .8px, transparent 1.4px),
+        linear-gradient(90deg, rgba(216,183,108,.08) 0 1px, transparent 1px),
+        linear-gradient(0deg, rgba(216,183,108,.06) 0 1px, transparent 1px);
+      background-size: 91px 113px, 127px 151px, 76px 97px, 100% 100%, 100% 100%;
+    }
+
+    .stars {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .86;
+      pointer-events: none;
+    }
+
+    .corner {
+      position: absolute;
+      z-index: 8;
+      width: 17cqw;
+      aspect-ratio: 1;
+      border-color: rgba(216,183,108,.58);
+      border-style: solid;
+      pointer-events: none;
+    }
+    .tl { top: 4.6%; left: 4.6%; border-width: 1px 0 0 1px; }
+    .tr { top: 4.6%; right: 4.6%; border-width: 1px 1px 0 0; }
+    .bl { bottom: 4.6%; left: 4.6%; border-width: 0 0 1px 1px; }
+    .br { bottom: 4.6%; right: 4.6%; border-width: 0 1px 1px 0; }
+
+    .filigree {
+      position: absolute;
+      z-index: 8;
+      inset: 0;
+      pointer-events: none;
+      opacity: .34;
+    }
+
+    .filigree svg {
+      position: absolute;
+      width: 20cqw;
+      height: 20cqw;
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: .8;
+    }
+    .filigree .f1 { top: 3.2%; left: 3.2%; }
+    .filigree .f2 { top: 3.2%; right: 3.2%; transform: scaleX(-1); }
+    .filigree .f3 { bottom: 3.2%; left: 3.2%; transform: scaleY(-1); }
+    .filigree .f4 { bottom: 3.2%; right: 3.2%; transform: scale(-1); }
+
+    .copy {
+      position: relative;
+      z-index: 5;
+      width: 83%;
+      margin-left: 8.5%;
+      padding-top: 13.55cqh;
+      text-align: left;
+    }
+
+    .eyebrow {
+      margin: 0 0 1cqh;
+      color: var(--soft-gold);
+      font: 500 1.25cqh/1 "Cinzel", serif;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: #fff3d2;
+      font: 500 6.45cqh/.92 "Italiana", serif;
+      letter-spacing: .03em;
+      text-shadow: 0 0 22px rgba(216, 183, 108, .16);
+    }
+
+    .rule {
+      display: block;
+      width: 66%;
+      height: 1px;
+      margin: 2.05cqh 0 1.95cqh;
+      background: linear-gradient(90deg, rgba(216, 183, 108, .9), transparent);
+    }
+
+    .details {
+      margin: 0;
+      color: rgba(255, 247, 230, .84);
+      font: 500 1.6cqh/1.45 "Cormorant Garamond", serif;
+      letter-spacing: .065em;
+    }
+
+    .host-line {
+      margin: 0 0 .65cqh;
+      color: rgba(241, 219, 156, .9);
+      font: 500 1.55cqh/1.35 "Cinzel", serif;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .reception-copy {
+      margin: 0;
+      color: rgba(255, 247, 230, .82);
+      font: 500 1.72cqh/1.42 "Cormorant Garamond", serif;
+      letter-spacing: .045em;
+    }
+
+    .connector {
+      color: rgba(255, 247, 230, .84);
+      font: 500 1.75cqh/1.45 "Cormorant Garamond", serif;
+      letter-spacing: .04em;
+    }
+
+    .host-feature {
+      display: block;
+      margin: 1.9cqh 0 0;
+      color: #fff3d2;
+      font: 500 4.25cqh/1 "Italiana", serif;
+      letter-spacing: .035em;
+      white-space: nowrap;
+      text-shadow: 0 0 18px rgba(216,183,108,.2);
+    }
+
+    .couple-names {
+      display: block;
+      margin: 1.05cqh 0 .85cqh;
+      color: #fff3d2;
+      font: 500 3.35cqh/1 "Italiana", serif;
+      letter-spacing: .035em;
+      white-space: nowrap;
+      text-shadow: 0 0 18px rgba(216,183,108,.2);
+    }
+
+    .date-time {
+      margin: 1.2cqh 0 0;
+      color: rgba(241, 219, 156, .92);
+      font: 500 1.48cqh/1.55 "Cinzel", serif;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .venue {
+      margin: 1.15cqh 0 0;
+      color: rgba(255, 247, 230, .86);
+      font: 500 1.7cqh/1.35 "Cormorant Garamond", serif;
+      letter-spacing: .06em;
+    }
+
+    .venue-line {
+      display: inline-flex;
+      align-items: center;
+      gap: .75cqw;
+    }
+
+    .map-badge {
+      position: relative;
+      z-index: 50;
+      pointer-events: auto;
+      width: 1.95cqh;
+      height: 2.45cqh;
+      display: inline-grid;
+      place-items: center;
+      color: #fff3d2;
+      text-decoration: none;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      transform: translateY(.18cqh);
+    }
+
+    .map-badge svg {
+      width: 58%;
+      height: 92%;
+      display: block;
+      filter: drop-shadow(0 0 5px rgba(216, 183, 108, .15));
+    }
+
+    .reception-asset-frame {
+      position: absolute;
+      z-index: 4;
+      right: 3.1%;
+      bottom: 2.2%;
+      width: 36%;
+      height: 34.2%;
+      display: grid;
+      place-items: end center;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .reception-asset-frame::before {
+      content: none;
+    }
+
+    .reception-asset-frame::after {
+      content: "";
+      position: absolute;
+      inset: auto 12% 4% 12%;
+      height: 9%;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(0,0,0,.34), transparent 70%);
+      filter: blur(6px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .reception-asset {
+      position: relative;
+      z-index: 2;
+      width: 106%;
+      height: auto;
+      max-height: 101%;
+      object-fit: contain;
+      object-position: bottom center;
+      opacity: .94;
+      filter:
+        saturate(.9)
+        contrast(.94)
+        brightness(.84)
+        sepia(.08)
+        drop-shadow(0 13px 21px rgba(0,0,0,.35));
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 5%, #000 95%, rgba(0,0,0,.95) 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, #000 5%, #000 95%, rgba(0,0,0,.95) 100%);
+    }
+
+    .asset-gold-frame {
+      position: absolute;
+      z-index: 1;
+      left: -11.5%;
+      right: -10%;
+      top: -17%;
+      bottom: -4.2%;
+      width: 121.5%;
+      height: 121.2%;
+      overflow: visible;
+      pointer-events: none;
+      filter:
+        drop-shadow(0 0 5px rgba(216, 183, 108, .18))
+        drop-shadow(0 5px 10px rgba(0, 0, 0, .28));
+    }
+
+    .asset-gold-frame .wall,
+    .asset-gold-frame .arch {
+      fill: none;
+      stroke: rgba(241, 219, 156, .86);
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .asset-gold-frame .wall {
+      stroke-width: 1.05;
+    }
+
+    .asset-gold-frame .arch {
+      stroke-width: .95;
+      opacity: .9;
+    }
+
+    .asset-gold-frame .base {
+      fill: none;
+      stroke: rgba(216, 183, 108, .96);
+      stroke-width: 2.8;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    @media (max-aspect-ratio: 9/16) {
+      .page { width: 100vw; height: 177.7778vw; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" aria-label="Midnight Gold Filigree reception page concept">
+    <canvas class="stars" id="stars" aria-hidden="true"></canvas>
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    <div class="filigree" aria-hidden="true">
+      <svg class="f1" viewBox="0 0 80 80"><path d="M8 72C12 46 28 27 54 21M8 72c18-2 31-12 38-30M17 55c15-1 24-8 27-21M29 70c1-15 8-25 22-31M14 14c19 9 30 22 34 40M22 12c12 8 19 18 22 31"/></svg>
+      <svg class="f2" viewBox="0 0 80 80"><path d="M8 72C12 46 28 27 54 21M8 72c18-2 31-12 38-30M17 55c15-1 24-8 27-21M29 70c1-15 8-25 22-31M14 14c19 9 30 22 34 40M22 12c12 8 19 18 22 31"/></svg>
+      <svg class="f3" viewBox="0 0 80 80"><path d="M8 72C12 46 28 27 54 21M8 72c18-2 31-12 38-30M17 55c15-1 24-8 27-21M29 70c1-15 8-25 22-31M14 14c19 9 30 22 34 40M22 12c12 8 19 18 22 31"/></svg>
+      <svg class="f4" viewBox="0 0 80 80"><path d="M8 72C12 46 28 27 54 21M8 72c18-2 31-12 38-30M17 55c15-1 24-8 27-21M29 70c1-15 8-25 22-31M14 14c19 9 30 22 34 40M22 12c12 8 19 18 22 31"/></svg>
+    </div>
+
+    <section class="copy">
+      <p class="eyebrow">The Reception</p>
+      <h1>Nayaab<br>&amp; Akanksha</h1>
+      <span class="rule" aria-hidden="true"></span>
+      <p class="reception-copy connector">request the pleasure of your company<br>at the celebration hosted by</p>
+      <p class="host-feature">Nikita &amp; Parteek</p>
+      <p class="date-time">November 13, 2026<br>7:30 PM onwards</p>
+      <p class="venue">Grand Imperial<br><span class="venue-line">SAS Nagar, Mohali <a class="map-badge" href="https://www.google.com/maps/search/?api=1&amp;query=Grand%20Imperial%20SAS%20Nagar%20Mohali" target="_blank" rel="noopener" aria-label="Open Grand Imperial, SAS Nagar, Mohali on Google Maps"><svg viewBox="0 0 28 36" aria-hidden="true"><path d="M14 2.7c-5.45 0-9.86 4.22-9.86 9.43 0 7.46 9.86 20.7 9.86 20.7s9.86-13.24 9.86-20.7C23.86 6.92 19.45 2.7 14 2.7Z" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><circle cx="14" cy="12.2" r="3.35" fill="none" stroke="currentColor" stroke-width="1.35"/><path d="M8.15 29.55c1.54 1.38 3.47 2.08 5.85 2.08s4.31-.7 5.85-2.08" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".72"/></svg></a></span></p>
+    </section>
+
+    <figure class="reception-asset-frame" aria-hidden="true">
+      <img class="reception-asset" src="reception-couple-cutout-blended.png" alt="">
+      <svg class="asset-gold-frame" viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true">
+        <path class="wall" d="M4 117 L4 41 C4 18 23 6 50 6 C77 6 96 18 96 41 L96 117" />
+        <path class="arch" d="M13 40 C19 20 33 11.5 50 11.5 C67 11.5 81 20 87 40" />
+        <path class="base" d="M2 117.5 H98" />
+      </svg>
+    </figure>
+
+  </main>
+  <script>
+    (() => {
+      document.querySelectorAll('a.map-badge[href]').forEach(link => {
+        ['click', 'pointerdown', 'touchstart'].forEach(type => {
+          link.addEventListener(type, event => event.stopPropagation(), { passive: true });
+        });
+      });
+
+      const canvas = document.getElementById('stars');
+      const page = canvas.closest('.page');
+      const context = canvas.getContext('2d', { alpha: true });
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const stars = [];
+      let width = 0;
+      let height = 0;
+      let frame = 0;
+
+      const palette = [
+        [255, 245, 214],
+        [241, 219, 156],
+        [216, 183, 108],
+        [180, 197, 255],
+        [255, 255, 248]
+      ];
+
+      const createStar = () => {
+        const kindRoll = Math.random();
+        const kind = kindRoll > .92 ? 'hero' : kindRoll > .76 ? 'glint' : kindRoll > .48 ? 'pin' : 'dust';
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: kind === 'hero' ? 1.15 + Math.random() * 1.65 : .32 + Math.random() * 1.05,
+          phase: Math.random() * Math.PI * 2,
+          speed: kind === 'hero' ? .00022 + Math.random() * .00042 : .00035 + Math.random() * .00075,
+          alpha: kind === 'hero' ? .68 + Math.random() * .28 : .14 + Math.random() * .5,
+          kind,
+          color: kind === 'hero' ? [255, 246, 198] : palette[Math.floor(Math.random() * palette.length)]
+        };
+      };
+
+      const seed = () => {
+        stars.length = 0;
+        const count = Math.max(54, Math.min(84, Math.round(width * height / 3900)));
+        for (let index = 0; index < count; index += 1) stars.push(createStar());
+      };
+
+      const resize = () => {
+        const bounds = page.getBoundingClientRect();
+        width = bounds.width;
+        height = bounds.height;
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = Math.round(width * ratio);
+        canvas.height = Math.round(height * ratio);
+        context.setTransform(ratio, 0, 0, ratio, 0, 0);
+        seed();
+        draw(0);
+      };
+
+      const draw = (time) => {
+        context.clearRect(0, 0, width, height);
+        for (const star of stars) {
+          const pulse = star.kind === 'hero'
+            ? .52 + Math.sin(time * star.speed + star.phase) * .42 + .2
+            : .38 + Math.sin(time * star.speed + star.phase) * .32 + .3;
+          const twinkle = Math.min(1, star.alpha * pulse);
+          const [red, green, blue] = star.color;
+          context.save();
+          context.translate(star.x, star.y);
+          context.fillStyle = `rgba(${red}, ${green}, ${blue}, ${twinkle})`;
+          context.shadowColor = `rgba(${red}, ${green}, ${blue}, ${twinkle})`;
+          context.shadowBlur = star.kind === 'hero' ? 13 : star.kind === 'dust' ? 2 : 6;
+
+          if (star.kind === 'glint' || star.kind === 'hero') {
+            context.beginPath();
+            const long = star.kind === 'hero' ? 4.6 : 3;
+            const short = star.kind === 'hero' ? .55 : .42;
+            context.moveTo(0, -star.radius * long);
+            context.lineTo(star.radius * short, -star.radius * short);
+            context.lineTo(star.radius * long, 0);
+            context.lineTo(star.radius * short, star.radius * short);
+            context.lineTo(0, star.radius * long);
+            context.lineTo(-star.radius * short, star.radius * short);
+            context.lineTo(-star.radius * long, 0);
+            context.lineTo(-star.radius * short, -star.radius * short);
+            context.closePath();
+            if (star.kind === 'hero') {
+              context.fill();
+              context.beginPath();
+              context.arc(0, 0, star.radius * .9, 0, Math.PI * 2);
+            }
+          } else {
+            context.beginPath();
+            context.arc(0, 0, star.kind === 'pin' ? star.radius : star.radius * .62, 0, Math.PI * 2);
+          }
+
+          context.fill();
+          context.restore();
+        }
+
+        if (!document.hidden && !reduceMotion.matches) frame = requestAnimationFrame(draw);
+      };
+
+      const start = () => {
+        cancelAnimationFrame(frame);
+        if (reduceMotion.matches) draw(0);
+        else if (!document.hidden) frame = requestAnimationFrame(draw);
+      };
+
+      if ('ResizeObserver' in window) new ResizeObserver(resize).observe(page);
+      else window.addEventListener('resize', resize, { passive: true });
+      document.addEventListener('visibilitychange', start);
+      reduceMotion.addEventListener('change', start);
+      resize();
+      start();
+    })();
+  </script>
+</body>
+</html>

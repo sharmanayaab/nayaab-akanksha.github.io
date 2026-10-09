@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Page 4 — Shagun</title>
+  <style>
+    :root {
+      --saffron: #d78b24;
+      --turmeric: #e8ad36;
+      --rani: #b6365c;
+      --rose: #dc7180;
+      --blush: #f3c7bb;
+      --green: #60754f;
+      --gold: #b77820;
+      --paper: #fffaf0;
+      --ink: #493026;
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #fff; }
+    body { display: grid; place-items: center; }
+
+    .page {
+      position: relative;
+      width: min(100vw, 56.25vh);
+      height: min(177.7778vw, 100vh);
+      overflow: hidden;
+      isolation: isolate;
+      container-type: size;
+      color: var(--ink);
+      background:
+        repeating-linear-gradient(45deg, rgba(255,251,225,.16) 0 1px, transparent 1px 18px),
+        repeating-linear-gradient(-45deg, rgba(160,80,22,.13) 0 1px, transparent 1px 18px),
+        linear-gradient(160deg, #efb842, var(--saffron) 58%, #c96f24);
+    }
+    .page::before {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: 4.2% 6.2% 3.2%;
+      border: 1px solid rgba(155,94,24,.28);
+      border-radius: 48cqw 48cqw 2.5cqw 2.5cqw;
+      background:
+        radial-gradient(circle at 50% 12%, rgba(232,173,54,.13), transparent 27%),
+        repeating-linear-gradient(0deg, rgba(115,76,45,.016) 0 1px, transparent 1px 4px),
+        var(--paper);
+      box-shadow: 0 1.5cqh 4cqh rgba(99,48,10,.2);
+      pointer-events: none;
+    }
+
+    .top-floral {
+      position: absolute;
+      z-index: 3;
+      top: -1%;
+      left: 50%;
+      width: 100%;
+      height: 19%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+    .top-floral .stem { fill: none; stroke: #66794f; stroke-width: 1.2; }
+    .top-floral .leaf { fill: #71865d; }
+    .top-floral .deep { fill: #b9365c; }
+    .top-floral .rose { fill: #e47b75; }
+    .top-floral .blush { fill: #f4bd9f; }
+    .top-floral .gold { fill: #edae24; }
+
+    .content {
+      position: relative;
+      z-index: 4;
+      width: 78%;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-top: 17.2cqh;
+    }
+    .kicker {
+      margin: 0 0 1.6cqh;
+      color: #a66723;
+      font: 600 2.45cqw/1.2 Baskerville, Georgia, serif;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      color: var(--rani);
+      font: 400 15cqw/.88 "Snell Roundhand", "Segoe Script", "Brush Script MT", cursive;
+      letter-spacing: -.045em;
+      transform: rotate(-2deg);
+    }
+    .subtitle {
+      max-width: 72%;
+      margin: 1.2cqh auto 2.7cqh;
+      color: #80624d;
+      font: italic 3cqw/1.45 Baskerville, Georgia, serif;
+    }
+
+    .date-lockup {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 3.3cqw;
+      width: 100%;
+      margin-bottom: 2.8cqh;
+      color: var(--rani);
+    }
+    .date-lockup::before, .date-lockup::after {
+      content: "";
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .date-lockup::after { transform: scaleX(-1); }
+    .date-main { display: grid; line-height: 1; }
+    .day { font: 500 15cqw/.82 Baskerville, Georgia, serif; }
+    .month { margin-top: .7cqh; color: #b26e1c; font: 700 3cqw/1 Arial, sans-serif; letter-spacing: .32em; text-indent: .32em; }
+    .year { margin-top: .7cqh; color: #7a655e; font: 500 2.45cqw/1 Arial, sans-serif; letter-spacing: .18em; }
+
+    .details {
+      width: 100%;
+      display: grid;
+      gap: 2.2cqh;
+    }
+    .detail {
+      position: relative;
+      padding-bottom: 2.1cqh;
+    }
+    .detail::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 37%;
+      width: 26%;
+      height: 1px;
+      background: rgba(215,139,36,.45);
+    }
+    .detail-label {
+      display: block;
+      margin-bottom: .7cqh;
+      color: #a76724;
+      font: 700 2.15cqw/1 Arial, sans-serif;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .detail-value {
+      display: block;
+      color: var(--ink);
+      font: 500 4cqw/1.3 Baskerville, Georgia, serif;
+    }
+    .venue-address {
+      display: block;
+      margin-top: .35cqh;
+      color: #7e6961;
+      font-size: 2.8cqw;
+      font-weight: 400;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: minmax(0, 52%);
+      justify-content: center;
+      width: 100%;
+      margin-top: 3.1cqh;
+    }
+    .action {
+      position: relative;
+      z-index: 50;
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 5.6cqh;
+      padding: 1.2cqh 2cqw;
+      border: 1px solid rgba(182,54,92,.34);
+      border-radius: 99px;
+      color: var(--rani);
+      background: rgba(255,255,255,.5);
+      font: 600 2.2cqw/1 Arial, sans-serif;
+      letter-spacing: .09em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .25s ease, background .25s ease, transform .25s ease;
+    }
+    .action { color: #fffaf3; background: var(--rani); }
+    .action:hover, .action:focus-visible { transform: translateY(-2px); }
+    .action:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    .blessing {
+      margin: auto 0 4.5cqh;
+      color: #8c6b58;
+      font: italic 2.7cqw/1.35 Baskerville, Georgia, serif;
+    }
+    .blessing::before { content: "✦"; display: block; margin-bottom: 1cqh; color: var(--gold); font-style: normal; }
+
+    .side-bloom {
+      position: absolute;
+      z-index: 2;
+      width: 17cqw;
+      height: 17cqw;
+      opacity: .92;
+      pointer-events: none;
+      animation: breathe 5.5s ease-in-out infinite alternate;
+    }
+    .side-bloom.left { left: -5cqw; bottom: 7%; transform: rotate(24deg); }
+    .side-bloom.right { right: -5cqw; bottom: 7%; transform: scaleX(-1) rotate(24deg); animation-delay: -2.7s; }
+    @keyframes breathe { to { translate: 0 -1.1cqh; } }
+    @media (prefers-reduced-motion: reduce) { .side-bloom { animation: none; } }
+  </style>
+</head>
+<body>
+  <main class="page" aria-label="Shagun ceremony invitation">
+    <svg class="top-floral" viewBox="0 0 400 170" aria-hidden="true">
+      <path class="stem" d="M-5 46c77 55 130 47 205-20 76 67 129 75 205 20M72 72c10 26 8 48-8 67m264-67c-10 26-8 48 8 67M145 65c-2 26 9 45 33 57m77-57c2 26-9 45-33 57"/>
+      <path class="leaf" d="M44 64c-19-4-30-15-31-32 19 2 30 13 31 32Zm41 24c14-15 28-19 43-10-12 16-26 19-43 10Zm62-14c-15-12-19-26-12-41 16 10 20 24 12 41Zm208-10c19-4 30-15 31-32-19 2-30 13-31 32Zm-41 24c-14-15-28-19-43-10 12 16 26 19 43 10Zm-62-14c15-12 19-26 12-41-16 10-20 24-12 41Z"/>
+      <path class="deep" d="M189 22c9-19 29-21 41-7 12 15 4 34-14 42-20-1-31-18-24-34l-3-1Zm-144 9c8-16 25-18 35-5 10 12 4 28-12 35-17-1-26-15-20-29l-3-1Zm310 0c-8-16-25-18-35-5-10 12-4 28 12 35 17-1 26-15 20-29l3-1Z"/>
+      <path class="rose" d="M204 17c9 4 12 11 8 21-10 4-18 0-22-9 2-8 7-12 14-12ZM61 28c7 3 9 9 6 16-8 3-14 0-17-7 2-6 5-9 11-9Zm278 0c-7 3-9 9-6 16 8 3 14 0 17-7-2-6-5-9-11-9Z"/>
+      <path class="blush" d="M196 37c-11 6-14 15-8 26 12 1 20-5 22-17-4-6-8-9-14-9Zm-143 8c-9 5-11 12-6 21 10 1 16-4 18-14-3-5-7-7-12-7Zm294 0c9 5 11 12 6 21-10 1-16-4-18-14 3-5 7-7 12-7Z"/>
+      <path class="gold" d="m200 80 4 8 9 1-7 6 2 9-8-4-8 4 2-9-7-6 9-1 4-8Z"/>
+    </svg>
+
+    <svg class="side-bloom left" viewBox="0 0 100 100" aria-hidden="true">
+      <path fill="#5f754b" d="M6 87c22-12 38-32 48-61l2 1C47 60 30 82 7 92Z"/>
+      <path fill="#71865a" d="M31 63C11 60 3 49 8 32c18 4 26 14 23 31Zm20-24C45 20 51 8 68 4c7 17 1 29-17 35Z"/>
+      <path fill="#c97416" d="M52 25C59 4 79 0 93 15c8 20-5 37-27 37-15-5-20-14-14-27Z"/>
+      <path fill="#efa51f" d="M68 14c9 1 14 7 13 16-7 7-15 7-22 1-1-9 2-15 9-17Z"/>
+      <path fill="#f8d572" d="M70 23c5 0 7 3 7 8-4 4-8 3-11 0 0-5 1-7 4-8Z"/>
+    </svg>
+    <svg class="side-bloom right" viewBox="0 0 100 100" aria-hidden="true">
+      <path fill="#5f754b" d="M6 87c22-12 38-32 48-61l2 1C47 60 30 82 7 92Z"/>
+      <path fill="#71865a" d="M31 63C11 60 3 49 8 32c18 4 26 14 23 31Zm20-24C45 20 51 8 68 4c7 17 1 29-17 35Z"/>
+      <path fill="#c97416" d="M52 25C59 4 79 0 93 15c8 20-5 37-27 37-15-5-20-14-14-27Z"/>
+      <path fill="#efa51f" d="M68 14c9 1 14 7 13 16-7 7-15 7-22 1-1-9 2-15 9-17Z"/>
+      <path fill="#f8d572" d="M70 23c5 0 7 3 7 8-4 4-8 3-11 0 0-5 1-7 4-8Z"/>
+    </svg>
+
+    <section class="content">
+      <p class="kicker">The celebrations begin</p>
+      <h1>Shagun</h1>
+      <p class="subtitle">An auspicious gathering of love, blessings, and new beginnings</p>
+
+      <div class="date-lockup" aria-label="November 10, 2026">
+        <span class="date-main"><strong class="day">10</strong><span class="month">NOV</span><span class="year">2026</span></span>
+      </div>
+
+      <div class="details">
+        <div class="detail">
+          <span class="detail-label">Time</span>
+          <span class="detail-value">10:00 AM – 2:00 PM</span>
+        </div>
+        <div class="detail">
+          <span class="detail-label">Venue</span>
+          <span class="detail-value">Hotel Shivalik View<span class="venue-address">Sector 17, Chandigarh</span></span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="action" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel%20Shivalik%20View%20Sector%2017%20Chandigarh" target="_blank" rel="noopener">Directions</a>
+      </div>
+
+      <p class="blessing">We look forward to celebrating with you</p>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll('a.action[href]').forEach(link => {
+      ['click', 'pointerdown', 'touchstart'].forEach(type => {
+        link.addEventListener(type, event => event.stopPropagation(), { passive: true });
+      });
+    });
+  </script>
+</body>
+</html>

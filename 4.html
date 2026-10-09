@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Page 5 — Haldi &amp; Sangeet</title>
+  <style>
+    :root {
+      --ochre: #76541d;
+      --ochre-soft: #9a722b;
+      --indigo: #243a62;
+      --indigo-deep: #172642;
+      --indigo-glow: #4f6592;
+      --haldi-blue-light: #506b9d;
+      --ivory: #fff6d5;
+      --gold: #c29b56;
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; background: #fff; }
+    body { display: grid; place-items: center; }
+
+    .page {
+      position: relative;
+      width: min(100vw, 56.25vh);
+      height: min(177.7778vw, 100vh);
+      overflow: hidden;
+      container-type: size;
+      background: #f7cf69 url("haldisangeet.png") center / cover no-repeat;
+    }
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+    }
+    .page::before {
+      z-index: 1;
+      top: 8%;
+      left: 1.7%;
+      width: 54%;
+      height: 38%;
+      border-radius: 58% 42% 52% 48% / 46% 50% 50% 54%;
+      background:
+        radial-gradient(circle at 42% 38%, rgba(79, 101, 146, .3), transparent 53%),
+        linear-gradient(145deg, rgba(23, 38, 66, .38), rgba(36, 58, 98, .16) 62%, transparent);
+      mix-blend-mode: multiply;
+      opacity: .42;
+      filter: blur(.2px);
+    }
+    .page::after {
+      z-index: 1;
+      right: 1.5%;
+      bottom: 7.5%;
+      width: 53%;
+      height: 42%;
+      border-radius: 48% 52% 45% 55% / 52% 46% 54% 48%;
+      background:
+        radial-gradient(circle at 52% 44%, rgba(255,246,213,.08), transparent 48%),
+        linear-gradient(150deg, transparent, rgba(17, 31, 57, .32) 68%, rgba(11, 21, 41, .4));
+      mix-blend-mode: multiply;
+      opacity: .46;
+    }
+
+    .event {
+      position: absolute;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+    .haldi {
+      top: 14.5%;
+      left: 5%;
+      width: 47%;
+      height: 29%;
+      color: #11213d;
+      text-shadow: 0 1px 0 rgba(255,246,213,.34);
+    }
+    .sangeet {
+      right: 5%;
+      bottom: 12.5%;
+      width: 45%;
+      height: 31%;
+      color: var(--ivory);
+      text-shadow: 0 1px 2px rgba(9,18,35,.18);
+    }
+
+    .kicker {
+      margin: 0 0 .8cqh;
+      color: var(--gold);
+      font: 700 2.15cqw/1 Arial, sans-serif;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    .event-title {
+      position: relative;
+      display: inline-block;
+      margin: 0 0 1.65cqh;
+      font: 500 16.5cqw/.78 "Snell Roundhand", "Segoe Script", "Brush Script MT", cursive;
+      letter-spacing: -.065em;
+      transform: rotate(-2deg);
+      isolation: isolate;
+    }
+    .haldi .event-title {
+      color: var(--haldi-blue-light);
+      text-shadow:
+        0 1px 0 rgba(255, 239, 169, .62),
+        0 0 13px rgba(23, 38, 66, .1);
+    }
+    .sangeet .event-title {
+      color: #fff3c4;
+      text-shadow:
+        0 2px 0 rgba(9, 18, 35, .48),
+        0 0 16px rgba(255, 241, 189, .18);
+    }
+    .event-title::before,
+    .event-title::after {
+      content: "";
+      position: absolute;
+      inset: -7% -9%;
+      z-index: 2;
+      pointer-events: none;
+      opacity: .72;
+      background:
+        radial-gradient(circle at 13% 31%, rgba(255,255,255,.95) 0 .7%, transparent 1.8%),
+        radial-gradient(circle at 32% 7%, rgba(255,233,166,.9) 0 .62%, transparent 1.6%),
+        radial-gradient(circle at 71% 25%, rgba(255,255,255,.9) 0 .55%, transparent 1.45%),
+        radial-gradient(circle at 88% 67%, rgba(255,224,143,.88) 0 .65%, transparent 1.65%),
+        radial-gradient(circle at 47% 82%, rgba(255,255,255,.86) 0 .52%, transparent 1.4%);
+      animation: titleSparkle 2.8s ease-in-out infinite;
+    }
+    .event-title::after {
+      inset: -5% -6%;
+      opacity: .45;
+      transform: scale(.92);
+      animation-delay: -1.35s;
+    }
+    @keyframes titleSparkle {
+      0%, 100% { opacity: .22; transform: translate3d(0,0,0) scale(.98); }
+      42% { opacity: .84; transform: translate3d(.15cqw,-.08cqh,0) scale(1.02); }
+      68% { opacity: .36; transform: translate3d(-.1cqw,.06cqh,0) scale(1); }
+    }
+
+    .details {
+      display: grid;
+      gap: 1.15cqh;
+      width: 88%;
+    }
+    .detail {
+      margin: 0;
+      font-size: 2.9cqw;
+      font-weight: 500;
+      line-height: 1.32;
+    }
+    .detail-label {
+      display: block;
+      margin-bottom: .35cqh;
+      color: var(--gold);
+      font-size: 1.75cqw;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .venue { font-size: 2.65cqw; }
+    .address-line { display: block; margin-top: .25cqh; }
+
+    .directions {
+      position: relative;
+      z-index: 50;
+      pointer-events: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 66%;
+      min-height: 4.5cqh;
+      margin-top: 1.7cqh;
+      padding: .9cqh 2.4cqw;
+      border: 1px solid currentColor;
+      border-radius: 99px;
+      color: inherit;
+      background: rgba(255,255,255,.12);
+      font: 700 1.9cqw/1 Arial, sans-serif;
+      letter-spacing: .1em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: transform .22s ease, background .22s ease;
+    }
+    .haldi .kicker,
+    .haldi .detail-label {
+      color: var(--indigo-deep);
+      text-shadow: 0 1px 0 rgba(255, 246, 213, .28);
+    }
+    .haldi .detail {
+      color: var(--haldi-blue-light);
+    }
+    .haldi .directions {
+      color: #fff0a9;
+      border-color: rgba(255, 246, 213, .7);
+      background: linear-gradient(135deg, rgba(23,38,66,.92), rgba(36,58,98,.82));
+    }
+    .sangeet .directions {
+      color: var(--indigo-deep);
+      border-color: rgba(255, 246, 213, .8);
+      background: linear-gradient(135deg, #ffe36d, #fff0a9 58%, #f4c85f);
+      box-shadow: 0 .6cqh 1.5cqh rgba(11, 21, 41, .16);
+    }
+    .directions:hover, .directions:focus-visible { transform: translateY(-2px); background: rgba(255,255,255,.25); }
+    .haldi .directions:hover,
+    .haldi .directions:focus-visible { background: linear-gradient(135deg, rgba(18,32,58,.98), rgba(42,65,105,.88)); }
+    .sangeet .directions:hover,
+    .sangeet .directions:focus-visible { background: linear-gradient(135deg, #fff0a9, #ffe36d); }
+    .directions:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main class="page" aria-label="Haldi and Sangeet event details">
+    <section class="event haldi" aria-label="Haldi ceremony details">
+      <p class="kicker">A morning of colour</p>
+      <h1 class="event-title">Haldi</h1>
+      <div class="details">
+        <p class="detail"><span class="detail-label">Date</span>November 11, 2026</p>
+        <p class="detail"><span class="detail-label">Time</span>11:00 AM</p>
+        <p class="detail venue"><span class="detail-label">Venue</span>House No. 194<span class="address-line">Sector 45-A, Chandigarh</span></p>
+      </div>
+      <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=House%20No.%20194%20Sector%2045-A%20Chandigarh" target="_blank" rel="noopener">View on Maps</a>
+    </section>
+
+    <section class="event sangeet" aria-label="Sangeet night details">
+      <p class="kicker">An evening of rhythm</p>
+      <h2 class="event-title">Sangeet</h2>
+      <div class="details">
+        <p class="detail"><span class="detail-label">Date</span>November 11, 2026</p>
+        <p class="detail"><span class="detail-label">Time</span>7:30 PM onwards</p>
+        <p class="detail venue"><span class="detail-label">Venue</span>Moti Mahal<span class="address-line">Sector 43, Chandigarh</span></p>
+      </div>
+      <a class="directions" href="https://www.google.com/maps/search/?api=1&amp;query=Moti%20Mahal%20Sector%2043%20Chandigarh" target="_blank" rel="noopener">View on Maps</a>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll('a.directions[href]').forEach(link => {
+      ['click', 'pointerdown', 'touchstart'].forEach(type => {
+        link.addEventListener(type, event => event.stopPropagation(), { passive: true });
+      });
+    });
+  </script>
+</body>
+</html>

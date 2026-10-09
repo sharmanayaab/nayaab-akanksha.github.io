@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nayaab &amp; Akanksha — Wedding Invitation</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: #fff;
+      overscroll-behavior: none;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .invite-shell {
+      position: relative;
+      width: min(100vw, 56.25vh);
+      height: min(177.7778vw, 100vh);
+      overflow: hidden;
+      isolation: isolate;
+      background: #fff;
+    }
+
+    .page-stack {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .page-stack.intro-locked {
+      overflow-y: hidden;
+      touch-action: none;
+    }
+
+    .page-stack::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+
+    .page-section {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .page-frame {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
+    .page-indicator {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      z-index: 5;
+      display: grid;
+      gap: 5px;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .page-indicator span {
+      width: 4px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(126, 96, 52, .2);
+      transition: background .28s ease, transform .28s ease;
+    }
+
+    .page-indicator span.active {
+      background: rgba(126, 96, 52, .62);
+      transform: scaleY(1.2);
+    }
+  </style>
+</head>
+<body>
+  <main class="invite-shell" aria-label="Nayaab and Akanksha wedding invitation">
+    <div class="page-stack intro-locked" id="pageStack" tabindex="0" aria-label="Wedding invitation pages">
+      <section class="page-section" data-page="1"><iframe class="page-frame" src="1.html" title="Invitation opening"></iframe></section>
+      <section class="page-section" data-page="2"><iframe class="page-frame" src="3.html" title="Reception"></iframe></section>
+      <section class="page-section" data-page="3"><iframe class="page-frame" src="4.html" title="Haldi and Sangeet"></iframe></section>
+      <section class="page-section" data-page="4"><iframe class="page-frame" src="5.html" title="Wedding ceremony"></iframe></section>
+      <section class="page-section" data-page="5"><iframe class="page-frame" src="6.html" title="Reception evening"></iframe></section>
+      <section class="page-section" data-page="6"><iframe class="page-frame" src="7.html" title="Blessing board"></iframe></section>
+      <section class="page-section" data-page="7"><iframe class="page-frame" src="8.html" title="Closing RSVP"></iframe></section>
+    </div>
+    <div class="page-indicator" id="pageIndicator" aria-hidden="true"></div>
+  </main>
+
+  <script>
+    (() => {
+      const stack = document.getElementById('pageStack');
+      const frames = [...document.querySelectorAll('.page-frame')];
+      const indicator = document.getElementById('pageIndicator');
+      const interactiveSelector = [
+        'a',
+        'button',
+        'input',
+        'textarea',
+        'select',
+        'label',
+        'audio',
+        'video',
+        '[role="button"]',
+        '[contenteditable="true"]'
+      ].join(',');
+
+      let currentIndex = 0;
+      let transitionLocked = false;
+      let introComplete = false;
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let wheelBuffer = 0;
+      let wheelResetTimer = 0;
+
+      const dots = frames.map((_, index) => {
+        const dot = document.createElement('span');
+        dot.className = index === 0 ? 'active' : '';
+        indicator.appendChild(dot);
+        return dot;
+      });
+
+      const updateIndicator = () => {
+        dots.forEach((dot, index) => dot.classList.toggle('active', index === currentIndex));
+      };
+
+      const sectionHeight = () => stack.clientHeight || window.innerHeight;
+
+      const keepIntroPinned = () => {
+        if (!introComplete && currentIndex === 0 && stack.scrollTop !== 0) {
+          stack.scrollTo({ top: 0, behavior: 'auto' });
+        }
+      };
+
+      const unlockIntroScroll = () => {
+        if (introComplete) return;
+        introComplete = true;
+        stack.classList.remove('intro-locked');
+        stack.scrollTo({ top: 0, behavior: 'auto' });
+      };
+
+      const syncCurrentFromScroll = () => {
+        keepIntroPinned();
+        const next = Math.round(stack.scrollTop / sectionHeight());
+        if (next !== currentIndex && next >= 0 && next < frames.length) {
+          currentIndex = next;
+          updateIndicator();
+        }
+      };
+
+      const goTo = index => {
+        if (transitionLocked || index < 0 || index >= frames.length || index === currentIndex) return;
+        if (currentIndex === 0 && index > 0 && !introComplete) return;
+
+        transitionLocked = true;
+        currentIndex = index;
+        updateIndicator();
+        stack.scrollTo({ top: sectionHeight() * currentIndex, behavior: 'smooth' });
+
+        window.setTimeout(() => {
+          transitionLocked = false;
+          syncCurrentFromScroll();
+        }, 760);
+      };
+
+      const requestTurn = delta => {
+        const amount = Number(delta) || 0;
+        if (transitionLocked || Math.abs(amount) < 1) return;
+        if (!introComplete && currentIndex === 0 && amount > 0) {
+          keepIntroPinned();
+          return;
+        }
+
+        wheelBuffer += amount;
+        window.clearTimeout(wheelResetTimer);
+        wheelResetTimer = window.setTimeout(() => {
+          wheelBuffer = 0;
+        }, 180);
+
+        if (Math.abs(wheelBuffer) < 34) return;
+        const direction = wheelBuffer > 0 ? 1 : -1;
+        wheelBuffer = 0;
+        goTo(currentIndex + direction);
+      };
+
+      const isInteractiveTarget = event => {
+        const target = event.target?.nodeType === 1 ? event.target : event.target?.parentElement;
+        return Boolean(target?.closest?.(interactiveSelector));
+      };
+
+      const installScrollBridge = frame => {
+        const doc = frame.contentDocument;
+        if (!doc || !doc.documentElement || doc.location?.href === 'about:blank') return;
+        if (frame.__inviteBridgeDocument === doc) return;
+        frame.__inviteBridgeDocument = doc;
+
+        const win = frame.contentWindow;
+        const send = delta => window.postMessage({ type: 'invite:page-scroll', delta }, '*');
+
+        const onWheel = event => {
+          if (isInteractiveTarget(event)) return;
+          event.preventDefault();
+          send(event.deltaY);
+        };
+
+        let startX = 0;
+        let startY = 0;
+
+        const onTouchStart = event => {
+          startX = event.touches[0]?.clientX || 0;
+          startY = event.touches[0]?.clientY || 0;
+        };
+
+        const onTouchMove = event => {
+          if (isInteractiveTarget(event)) return;
+          const x = event.touches[0]?.clientX || startX;
+          const y = event.touches[0]?.clientY || startY;
+          const dx = x - startX;
+          const dy = startY - y;
+          if (Math.abs(dy) > 34 && Math.abs(dy) > Math.abs(dx) * 1.12) {
+            event.preventDefault();
+            send(dy);
+            startX = x;
+            startY = y;
+          }
+        };
+
+        [win, doc, doc.documentElement, doc.body].filter(Boolean).forEach(target => {
+          target.addEventListener('wheel', onWheel, { capture: true, passive: false });
+          target.addEventListener('touchstart', onTouchStart, { capture: true, passive: true });
+          target.addEventListener('touchmove', onTouchMove, { capture: true, passive: false });
+        });
+      };
+
+      frames.forEach(frame => {
+        frame.addEventListener('load', () => {
+          installScrollBridge(frame);
+          window.setTimeout(() => installScrollBridge(frame), 250);
+          window.setTimeout(() => installScrollBridge(frame), 900);
+        });
+      });
+
+      stack.addEventListener('scroll', () => {
+        keepIntroPinned();
+        window.clearTimeout(stack.__syncTimer);
+        stack.__syncTimer = window.setTimeout(syncCurrentFromScroll, 80);
+      }, { passive: true });
+
+      stack.addEventListener('wheel', event => {
+        event.preventDefault();
+        requestTurn(event.deltaY);
+      }, { passive: false });
+
+      stack.addEventListener('touchstart', event => {
+        touchStartX = event.touches[0]?.clientX || 0;
+        touchStartY = event.touches[0]?.clientY || 0;
+      }, { passive: true });
+
+      stack.addEventListener('touchmove', event => {
+        const x = event.touches[0]?.clientX || touchStartX;
+        const y = event.touches[0]?.clientY || touchStartY;
+        const dx = x - touchStartX;
+        const dy = touchStartY - y;
+        if (Math.abs(dy) > 34 && Math.abs(dy) > Math.abs(dx) * 1.12) {
+          event.preventDefault();
+          requestTurn(dy);
+          touchStartX = x;
+          touchStartY = y;
+        }
+      }, { passive: false });
+
+      window.addEventListener('message', event => {
+        if (event.data?.type === 'invitation:wax-transition-complete') {
+          unlockIntroScroll();
+        }
+
+        if (event.data?.type === 'invitation:scroll-delta' || event.data?.type === 'invite:page-scroll') {
+          requestTurn(Number(event.data.delta) || 0);
+        }
+      });
+
+      window.addEventListener('keydown', event => {
+        if (event.key === 'ArrowDown' || event.key === 'PageDown' || event.key === ' ') {
+          event.preventDefault();
+          goTo(currentIndex + 1);
+        }
+
+        if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+          event.preventDefault();
+          goTo(currentIndex - 1);
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        stack.scrollTo({ top: sectionHeight() * currentIndex, behavior: 'auto' });
+      });
+
+      window.invitationPages = {
+        next: () => goTo(currentIndex + 1),
+        prev: () => goTo(currentIndex - 1),
+        goTo: pageNumber => goTo(Math.max(0, Math.min(frames.length - 1, Number(pageNumber) - 1))),
+        get current() { return currentIndex + 1; },
+        get total() { return frames.length; }
+      };
+
+      frames.forEach(installScrollBridge);
+      updateIndicator();
+      stack.focus({ preventScroll: true });
+    })();
+  </script>
+</body>
+</html>

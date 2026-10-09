@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Nayaab and Akanksha Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:shagun-20261110@nayaab-akanksha-wedding
+DTSTAMP:20260620T000000Z
+DTSTART:20261110T043000Z
+DTEND:20261110T083000Z
+SUMMARY:Shagun — Nayaab & Akanksha
+LOCATION:Hotel Shivalik View\, Sector 17\, Chandigarh
+DESCRIPTION:Join us for the Shagun ceremony celebrating Nayaab and Akanksha.
+END:VEVENT
+END:VCALENDAR

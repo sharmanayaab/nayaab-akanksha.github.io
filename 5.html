@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Page 6 — Wedding Day</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&amp;family=Cormorant+Garamond:wght@400;500;600&amp;family=Italiana&amp;display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: #241915;
+    }
+
+    .page {
+      position: relative;
+      width: min(100vw, 56.25vh);
+      height: min(100vh, 177.7778vw);
+      overflow: hidden;
+      background: #f7ead8 url("page-6-backdrop.png") center / cover no-repeat;
+    }
+
+    .front-floor-shadow {
+      position: absolute;
+      z-index: 2;
+      left: 32.8%;
+      right: 27%;
+      bottom: 4.85%;
+      height: 3.1%;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse, rgba(45, 30, 20, .48) 0, rgba(91, 61, 38, .28) 44%, rgba(151, 105, 58, .1) 62%, transparent 78%);
+      filter: blur(4px);
+      pointer-events: none;
+    }
+
+    .sparkles {
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .95;
+      pointer-events: none;
+    }
+
+    .ceremony-card {
+      position: absolute;
+      z-index: 4;
+      top: 9.4%;
+      left: 50%;
+      width: 82%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: #7b5140;
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .devnagari {
+      margin: 0;
+      color: #a77443;
+      font: 600 2.35cqh/1.1 "Cormorant Garamond", serif;
+      letter-spacing: .08em;
+    }
+
+    .title {
+      margin: 1cqh 0 1.45cqh;
+      color: #92313d;
+      font: 500 6.35cqh/.92 "Italiana", serif;
+      letter-spacing: .035em;
+    }
+
+    .lotus-rule {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.2cqw;
+      margin: 0 auto 1.05cqh;
+      color: #b7854e;
+    }
+
+    .lotus-rule::before,
+    .lotus-rule::after {
+      content: "";
+      width: 18.5cqw;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, currentColor);
+    }
+
+    .lotus-rule::after { transform: scaleX(-1); }
+
+    .lotus-rule svg {
+      width: 4.8cqw;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.25;
+    }
+
+    .date-row {
+      display: grid;
+      grid-template-columns: .82fr .56fr .82fr;
+      align-items: center;
+      column-gap: 1.35cqw;
+      margin: 0 auto;
+      width: 68%;
+    }
+
+    .month,
+    .year {
+      color: #76513f;
+      font-family: "Cinzel", serif;
+      font-size: 1.52cqh;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .month { justify-self: end; }
+    .year { justify-self: start; transform: translateX(.65cqw); }
+
+    .day-wrap {
+      display: grid;
+      place-items: center;
+      min-height: 6.7cqh;
+      border-inline: 1px solid rgba(183, 138, 80, .52);
+    }
+
+    .day {
+      color: #92313d;
+      font-size: 6.25cqh;
+      font-weight: 500;
+      line-height: .84;
+    }
+
+    .muhurat {
+      margin: 1.1cqh 0 0;
+      color: #9a7147;
+      font-family: "Cinzel", serif;
+      font-size: 1.42cqh;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .muhurat strong {
+      color: #92313d;
+      font-weight: 600;
+      letter-spacing: .14em;
+    }
+
+    .venue {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      column-gap: 8px;
+      margin-top: .78cqh;
+    }
+
+    .venue-label {
+      color: #9a7147;
+      font-family: "Cinzel", serif;
+      font-size: 1.32cqh;
+      font-weight: 500;
+      letter-spacing: .32em;
+      text-transform: uppercase;
+    }
+
+    .venue-name {
+      color: #6f343c;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 2.28cqh;
+      font-weight: 600;
+      letter-spacing: .045em;
+    }
+
+    .map-pin {
+      position: relative;
+      z-index: 50;
+      pointer-events: auto;
+      display: grid;
+      place-items: center;
+      width: 22px;
+      height: 28px;
+      min-width: 22px;
+      max-width: 22px;
+      min-height: 28px;
+      max-height: 28px;
+      margin-top: 2px;
+      color: #a75d3e;
+      transform: none;
+      transition: transform .2s ease, color .2s ease;
+    }
+
+    .map-pin:hover,
+    .map-pin:focus-visible {
+      color: #87333c;
+      transform: translateY(-2px) scale(1.06);
+      outline: none;
+    }
+
+    .map-pin svg {
+      display: block;
+      width: 22px;
+      height: 28px;
+      min-width: 22px;
+      max-width: 22px;
+      overflow: visible;
+      filter: drop-shadow(0 2px 2px rgba(75, 43, 26, .14));
+    }
+
+    .map-pin path:first-child { fill: currentColor; }
+    .map-pin path:last-child { fill: #fff5e8; }
+
+    .couple-wrap {
+      position: absolute;
+      z-index: 3;
+      left: 52.9%;
+      bottom: 5.05%;
+      height: 24.5%;
+      width: auto;
+      transform: translateX(-50%);
+      transform-origin: center bottom;
+      pointer-events: none;
+    }
+
+    .couple-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 231, 184, .16), rgba(138, 91, 48, .12)),
+        radial-gradient(ellipse at 50% 28%, rgba(255, 236, 190, .14), transparent 58%);
+      mix-blend-mode: multiply;
+      opacity: .58;
+      pointer-events: none;
+    }
+
+    .couple-figure {
+      display: block;
+      height: 100%;
+      width: auto;
+      filter:
+        sepia(.13)
+        saturate(.86)
+        brightness(.88)
+        contrast(.94)
+        drop-shadow(0 8px 8px rgba(44, 29, 20, .4))
+        drop-shadow(0 0 7px rgba(255, 218, 158, .1));
+    }
+
+    @media (max-aspect-ratio: 9/16) {
+      .page {
+        width: 100vw;
+        height: 177.7778vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page" aria-label="Page 6 wedding ceremony">
+    <canvas class="sparkles" id="sparkles" aria-hidden="true"></canvas>
+    <section class="ceremony-card" aria-label="Wedding ceremony details">
+      <p class="devnagari">॥ शुभ विवाह ॥</p>
+      <h1 class="title">Shubh Vivah</h1>
+
+      <div class="lotus-rule" aria-hidden="true">
+        <svg viewBox="0 0 50 40"><path d="M25 35C12 30 7 21 9 10c8 3 13 8 16 16 3-8 8-13 16-16 2 11-3 20-16 25Zm0-9C18 18 18 10 25 3c7 7 7 15 0 23Z"/></svg>
+      </div>
+
+      <div class="date-row" aria-label="November 12, 2026">
+        <span class="month">November</span>
+        <span class="day-wrap"><strong class="day">12</strong></span>
+        <span class="year">2026</span>
+      </div>
+
+      <p class="muhurat">Muhurat: <strong>11:00 AM</strong></p>
+
+      <span class="venue-label">Venue</span>
+      <div class="venue">
+        <span class="venue-name">Rai Farms, Mohali</span>
+        <a class="map-pin" href="https://www.google.com/maps/search/?api=1&amp;query=Rai%20Farms%20Mohali" target="_blank" rel="noopener" aria-label="Open Rai Farms in Google Maps">
+          <svg viewBox="0 0 24 30" aria-hidden="true"><path d="M12 28S3 18.5 3 11.2a9 9 0 1 1 18 0C21 18.5 12 28 12 28Z"/><path d="M12 14.5a3.4 3.4 0 1 0 0-6.8 3.4 3.4 0 0 0 0 6.8Z"/></svg>
+        </a>
+      </div>
+    </section>
+    <span class="front-floor-shadow" aria-hidden="true"></span>
+    <span class="couple-wrap">
+      <img class="couple-figure" src="couple-full-length-cutout.png" alt="Bride and groom standing in front of the mandap">
+    </span>
+  </main>
+  <script>
+    (() => {
+      document.querySelectorAll('a.map-pin[href]').forEach(link => {
+        ['click', 'pointerdown', 'touchstart'].forEach(type => {
+          link.addEventListener(type, event => event.stopPropagation(), { passive: true });
+        });
+      });
+
+      const canvas = document.getElementById('sparkles');
+      const page = canvas.closest('.page');
+      const context = canvas.getContext('2d', { alpha: true });
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const particles = [];
+      let width = 0;
+      let height = 0;
+      let frame = 0;
+      let previousTime = 0;
+
+      const palette = [
+        [255, 219, 139],
+        [238, 180, 75],
+        [210, 139, 34],
+        [255, 244, 203],
+        [184, 107, 45]
+      ];
+
+      const createParticle = (fromTop = false) => {
+        const typeRoll = Math.random();
+        return {
+          x: Math.random() * width,
+          y: fromTop ? -14 - Math.random() * 60 : Math.random() * height,
+          radius: .38 + Math.random() * 1.95,
+          speed: .006 + Math.random() * .014,
+          drift: .28 + Math.random() * 1.45,
+          phase: Math.random() * Math.PI * 2,
+          twinkle: .0011 + Math.random() * .0022,
+          alpha: .2 + Math.random() * .44,
+          kind: typeRoll > .82 ? 'diamond' : typeRoll > .62 ? 'star' : typeRoll > .34 ? 'orb' : 'dust',
+          color: palette[Math.floor(Math.random() * palette.length)],
+          angle: Math.random() * Math.PI,
+          spin: (Math.random() - .5) * .0014
+        };
+      };
+
+      const seed = () => {
+        particles.length = 0;
+        const count = Math.max(110, Math.min(160, Math.round(width * height / 1900)));
+        for (let index = 0; index < count; index += 1) particles.push(createParticle());
+      };
+
+      const resize = () => {
+        const bounds = page.getBoundingClientRect();
+        width = bounds.width;
+        height = bounds.height;
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = Math.round(width * ratio);
+        canvas.height = Math.round(height * ratio);
+        context.setTransform(ratio, 0, 0, ratio, 0, 0);
+        seed();
+        draw(0, true);
+      };
+
+      const draw = (time, still = false) => {
+        context.clearRect(0, 0, width, height);
+        const delta = previousTime ? Math.min(time - previousTime, 34) : 16;
+        previousTime = time;
+
+        for (const particle of particles) {
+          if (!still) {
+            particle.y += particle.speed * delta;
+            particle.phase += particle.twinkle * delta;
+            particle.angle += particle.spin * delta;
+            if (particle.y > height + 18) Object.assign(particle, createParticle(true));
+          }
+
+          const glow = particle.alpha * (.6 + Math.sin(particle.phase) * .4);
+          const x = particle.x + Math.sin(particle.phase * .74) * particle.drift;
+          const [red, green, blue] = particle.color;
+          context.save();
+          context.translate(x, particle.y);
+          context.rotate(particle.angle);
+          context.fillStyle = `rgba(${red}, ${green}, ${blue}, ${glow})`;
+          context.shadowColor = `rgba(${red}, ${green}, ${blue}, ${glow})`;
+          context.shadowBlur = particle.kind === 'orb' ? particle.radius * 10 : particle.radius * 6;
+
+          if (particle.kind === 'star') {
+            context.beginPath();
+            context.moveTo(0, -particle.radius * 3);
+            context.lineTo(particle.radius * .42, -particle.radius * .42);
+            context.lineTo(particle.radius * 3, 0);
+            context.lineTo(particle.radius * .42, particle.radius * .42);
+            context.lineTo(0, particle.radius * 3);
+            context.lineTo(-particle.radius * .42, particle.radius * .42);
+            context.lineTo(-particle.radius * 3, 0);
+            context.lineTo(-particle.radius * .42, -particle.radius * .42);
+            context.closePath();
+          } else if (particle.kind === 'diamond') {
+            context.beginPath();
+            context.moveTo(0, -particle.radius * 2.25);
+            context.lineTo(particle.radius * 1.15, 0);
+            context.lineTo(0, particle.radius * 2.25);
+            context.lineTo(-particle.radius * 1.15, 0);
+            context.closePath();
+          } else {
+            context.beginPath();
+            context.arc(0, 0, particle.kind === 'orb' ? particle.radius * 1.55 : particle.radius * .72, 0, Math.PI * 2);
+          }
+          context.fill();
+          context.restore();
+        }
+
+        if (!still && !document.hidden && !reduceMotion.matches) frame = requestAnimationFrame(draw);
+      };
+
+      const start = () => {
+        cancelAnimationFrame(frame);
+        previousTime = 0;
+        if (reduceMotion.matches) draw(0, true);
+        else if (!document.hidden) frame = requestAnimationFrame(draw);
+      };
+
+      if ('ResizeObserver' in window) new ResizeObserver(resize).observe(page);
+      else window.addEventListener('resize', resize, { passive: true });
+      document.addEventListener('visibilitychange', start);
+      reduceMotion.addEventListener('change', start);
+      resize();
+      start();
+    })();
+  </script>
+</body>
+</html>
